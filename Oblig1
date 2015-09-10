@@ -1,0 +1,6 @@
+
+
+num_points = 360
+
+angle_a = zeros(num)  
+angle_b = 
