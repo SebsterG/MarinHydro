@@ -96,20 +96,29 @@ def integral_1(N,r_a,r_b):
 def solve(N,r_a,r_b):
 	return np.linalg.solve(make_angle(N,r_a,r_b),integral_1(N,r_a,r_b))
 
-N = 401
+N = 500
 r_a = 1
 r_b = 1
+equal = r_a -r_b
+
+if equal == 0:
+	thet = np.zeros(N)
+	om = 2.0*pi*r_a
+	dx = 2*pi/N
+	for i in range(N):
+		thet[i] = i*dx
+	diff = max(-np.cos(thet) - solve(N,r_a,r_b))
+	#print "Error between analytic and numerical in percent:%.d , running %.d times " %(100*diff/max(-np.cos(thet)),N)
+	plot(-np.cos(thet),"g")
+	plot(solve(N,r_a,r_b), "r")
+	plt.legend(['Exact ', 'Numerical'])
+	title("Fluid Potential over Circle, running %.d times, with error: %.d percent"%(N,100*diff/max(-np.cos(thet)))) 
+	show()
+else :
+	plot(solve(N,r_a,r_b), "r")
+	legend("Distribution of potential over a circle")
+	show()
 
 
-thet = np.zeros(N)
-om = 2.0*pi*r_a
-dx = 2*pi/N
-for i in range(N):
-	thet[i] = i*dx
-diff = max(-np.cos(thet) - solve(N,r_a,r_b))
-print 100*diff/max(-np.cos(thet))
-plot(-np.cos(thet),"g")
-legend("exact solution")
-plot(solve(N,r_a,r_b), "r")
-legend("Distribution of potential over a circle")
-show()
+
+
