@@ -37,7 +37,7 @@ def integral_1(N,r_a,r_b,direction1):
 	traps1 = 0
 	traps2 = 0
 	Matrix_B = np.zeros(N)
-	for i in range(N-1):	
+	for i in range(N):	
 		integral_x = 0
 		integral_66 = 0
 		x0 = 0.5*(x[i]+x[i+1])
@@ -47,7 +47,7 @@ def integral_1(N,r_a,r_b,direction1):
 			rad_2 = np.sqrt((x0-x[j+1])**2 + (y0-y[j+1])**2)	
 
 			if direction1 == 11:
-				traps1x = -((x[j]+x[j+1])/(2*r_a**2)) / np.sqrt(  ((x[j]+x[j+1])/(2*r_a**2))**2 + ((y[j]+y[j+1])/(2*r_b**2))**2  ) * np.log(rad_1)		
+				traps1x = -((x[j]+x[j+1])/(2*r_a**2)) / np.sqrt(  ((x[j]+x[j+1])/(2*r_a**2))**2 +  ((y[j]+y[j+1])/(2*r_b**2))**2  ) * np.log(rad_1)		
 				traps2x = -((x[j+1]+x[j+2])/(2*r_a**2)) / np.sqrt(  ((x[j+1]+x[j+2])/(2*r_a**2))**2 + ((y[j+1]+y[j+2])/(2*r_b**2))**2  )* np.log(rad_2)	
 				ds = np.sqrt((x[j+1]-x[j])**2 + (y[j+1] - y[j])**2)
 				integral_x = integral_x + (traps1x + traps2x) * ds  * 0.5
@@ -114,7 +114,7 @@ def added_mass(N,r_a,r_b):
 
 N = 1000
 r_a = 1
-r_b = 1
+r_b = 3
 equal = r_a - r_b
 
 
@@ -133,7 +133,7 @@ if equal == 0:
 	plot(exact_1,"g")
 	plot(solution, "r")
 	plt.legend(['Exact ', 'Numerical'])
-	title("Fluid Potential over Circle, running %.2f times, with error: %.d %%"%(N,100*diff/max(exact_1))) 
+	title("Fluid Potential over Circle, running %.d times,  error: %.2f %%  \n m11 = %.2f, m66 = %.f , error in m11 =  %.2f %% " %(N,100*diff/max(exact_1), a_m11 , a_m66, error1)) 
 	show()
 
 else :
@@ -141,9 +141,9 @@ else :
 	error1 = (((r_b**2*np.pi)-a_m11)/(r_b**2*np.pi))*100
 	exact6 = (np.pi/8)*(r_a**2-r_b**2)**2
 	error6 = (((exact6-a_m66 ) / (exact6)))*100
-	print "m11: " ,a_m11 ,"error m11 : %.2f  %%, error m66 %.2f %%  running %.d times" %(error1,error6, N)
+	print "m11: " ,a_m11 ,"error m11 : %.2f  %%, error m66 %.2f %%   running %.d times" %(error1,error6, N)
 	plot(solver1(N,r_a,r_b,direction1 = 11), "r")
-	legend("Distribution of potential over an ellipse")
+	title("Distribution of potential over an ellipse running %.d times \n m11: %.2f , error m11 : %.2f %% \n m66 = %.2f , error m66= %.2f %%, r_a = %.d, r_b= %.d  " %(N,a_m11,error1,a_m66,error6,r_a,r_b))
 	show()
 
 
