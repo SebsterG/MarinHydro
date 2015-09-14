@@ -1,5 +1,6 @@
-\documentclass{article}
-\usepackage{graphicx}
+\documentclass[a4paper,norsk]{article}
+\usepackage{preamble}
+
 
 \begin{document}
 
@@ -14,10 +15,39 @@ For specified (see below) two-dimensional geometries, assuming potential theory 
 
 
 \section{Teori}
-
-
-
-
+In this assignment we use the method of panels. By splitting the geometry into N equal parts, and assuming that $\phi , \frac{\partial \phi }{\partial n}$ is constant every segment.
+From Newman chapter 4 we have (79):
+\[   \int \phi \frac{\partial G }{\partial n} - G\frac{\partial \phi }{\partial n} = -\pi \phi(x,y) \]
+where $G = ln (r)$, a source in 2D
+$$ -\pi \phi(x_0) + \int_C \phi \frac{\partial }{\partial n} ln(r) dl = \int ln(r) \frac{\partial \phi}{\partial n} dl       $$
+where $x_0$ states a point on our geometry.\\
+\newline
+We got a trick from the lectures, turning it into:
+\[ -\pi \phi(x_0) + \sum_{n=1}^N \phi(x_n) (\theta_a - \theta_b)  = \int ln(r)\frac{\partial \phi }{\partial n} dl    \]
+$$
+\begin{pmatrix}
+  -\pi & (\theta_a - \theta_b)_0  & (\theta_a - \theta_b)_1 & ...\\
+  (\theta_a - \theta_b)_N  & -\pi & (\theta_a - \theta_b)_0  & ...\\
+  (\theta_a - \theta_b)_{N-1}  & (\theta_a - \theta_b)_N  & -\pi & ...\\
+  ... & ... & ....& ...  \\
+ \end{pmatrix}
+ \begin{pmatrix}
+\phi_0  \\
+\phi_1 \\
+\phi_2 \\ 
+  ...  \\
+  \phi_N
+ \end{pmatrix}
+ =
+ \begin{pmatrix}
+\int ln(r_0)\frac{\partial \phi }{\partial n} dl   \\
+\int ln(r_1)\frac{\partial \phi }{\partial n} dl  \\
+\int ln(r_2)\frac{\partial \phi }{\partial n} dl  \\ 
+  ...  \\
+  \end{pmatrix}
+  $$
+To calculate the $\phi$ values we created a fictional point between the $x_N$ points, where we stand in this "ghost" point and calculate the $\Delta \theta$ to the $x_N$ values. This is done since we have assumed $\phi$ to constant.
+To evaluate the integrals we used the trapezoidal method. Where we again stand in the "ghost" point and calculate between the 
 
 
 
