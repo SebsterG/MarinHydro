@@ -1,17 +1,23 @@
-
-import matplotlib.pyplot as plt
+from matplotlib.pylab import *
 import numpy as np
 import math as math
 
 
 def make_points(num_points,r_a, r_b):
-	dx = 2*np.pi/num_points
-	x = np.zeros(num_points*3)
-	y = np.zeros(num_points*3)
-	for i in range(num_points*2+1):
+	dx = 2*pi/num_points
+	x = np.zeros(num_points+1)
+	y = np.zeros(num_points+1)
+	for i in range(num_points+1):
 		x[i] = r_a*np.cos(i*dx)
 		y[i] = r_b*np.sin(i*dx)
 	return x,y
+
+
+"""x,y = make_points(4,2,2)
+plot(x,y)
+show()
+print x
+print y"""
 """
 def make_points(N,r_a,r_b):
 	N = N/4 *4
@@ -31,11 +37,12 @@ def make_points(N,r_a,r_b):
 		y[i+3*Np] = -(d1 +(d2-d1)/2 *(1-np.cos(i*np.pi/Np)))
 	return x ,y
 """
-"""x,y =make_points_1(100,1,1)
+
+x,y =make_points(100,1,1)
 plt.figure()
 plt.plot(x,y, "-o")
 plt.axis([-3,3,-3,3])	
-plt.show()"""
+plt.show()
 
 def make_angle(N,r_a,r_b):
 	angle = np.zeros(N-1)
@@ -63,38 +70,35 @@ def integral_1(N,r_a,r_b,direction1):
 	traps1 = 0
 	traps2 = 0
 	Matrix_B = np.zeros(N)
-	ds = np.sqrt((x[1:-1]-x[:-2])**2 + (y[1:-1] - y[:-2])**2)
 	for i in range(N):	
 		integral_x = 0
 		integral_66 = 0
 		x0 = 0.5*(x[i]+x[i+1])
 		y0 = 0.5*(y[i]+y[i+1])
-		#for j in range(N-1):
-		rad_1 = np.sqrt((x0-x[:-2])**2 + (y0-y[:-2])**2)
-		rad_2 = np.sqrt((x0-x[1:-1])**2 + (y0-y[1:-1])**2)	
+		for j in range(N-1):
+			rad_1 = np.sqrt((x0-x[j])**2 + (y0-y[j])**2)
+			rad_2 = np.sqrt((x0-x[j+1])**2 + (y0-y[j+1])**2)	
+			n1 = -((x[j]+x[j+1])/(2*r_a**2)) / np.sqrt(  ((x[j]+x[j+1])/(2*r_a**2))**2 +  ((y[j]+y[j+1])/(2*r_b**2))**2 )
+			if direction1 == 11:
+				traps1x = n1 * np.log(rad_1)		
+				traps2x = n1 * np.log(rad_2)	#-((x[j+1]+x[j+2])/(2*r_a**2)) / np.sqrt(  ((x[j+1]+x[j+2])/(2*r_a**2))**2 + ((y[j+1]+y[j+2])/(2*r_b**2))**2  )* np.log(rad_2)	
+				ds = np.sqrt((x[j+1]-x[j])**2 + (y[j+1] - y[j])**2)
+				integral_x = integral_x + (traps1x + traps2x) * ds  * 0.5
+			else :
+				r1a = (x[j] + x[j+1])*0.5 ; r2a =0.5*(y[j] + y[j+1])
+				n1a = -((x[j]+x[j+1])/ (2*r_a**2)) / np.sqrt(  ((x[j]+x[j+1])/(2*r_a**2))**2 + ((y[j]+y[j+1])/(2*r_b**2))**2  )
+				n2a = -((y[j]+y[j+1])/(2*r_b**2))/np.sqrt(  ((x[j]+x[j+1])/(2*r_a**2))**2 + ((y[j]+y[j+1])/(2*r_b**2))**2  )
+				crosses1 = r1a*n2a - r2a*n1a
 
-		if direction1 == 11:
-			print (x[:-2]+x[1:-1])
-			traps1x = -((x[:-3]+x[1:-2])/(2*r_a**2)) / np.sqrt( ((x[:-3]+x[1:-2])/(2*r_a**2))**2+\
-			((y[:-3]+y[1:-2])/(2*r_b**2))**2  ) * np.log(rad_1[:-1])		
-			traps2x = -((x[1:-2]+x[2:-1])/(2*r_a**2)) / np.sqrt(  ((x[1:-2]+x[2:-1])/(2*r_a**2))**2 + ((y[1:-2]+y[2:-1])/(2*r_b**2))**2  )* np.log(rad_2)	
-			integral_x = np.sum((traps1x[:] + traps2x[:]) * ds[:])  * 0.5
+				r1b = (x[j+1] + x[j+2])*0.5 ; r2b =0.5*(y[j+1] + y[j+2])
+				n1b = -((x[j+1]+x[j+2])/(2*r_a**2))/np.sqrt(  ((x[j+1]+x[j+2])/(2*r_a**2))**2 + ((y[j+1]+y[j+2])/(2*r_b**2))**2  )
+				n2b = -((y[j+1]+y[j+2])/(2*r_b**2))/np.sqrt(  ((x[j+1]+x[j+2])/(2*r_a**2))**2 + ((y[j+1]+y[j+2])/(2*r_b**2))**2  )
+				crosses2 = r1b*n2b - r2b*n1b
 
-		else :
-			r1a = (x[:-2] + x[1:-1])*0.5 ; r2a =0.5*(y[:-2] + y[1:-1])
-			n1a = -((x[:-2]+x[1:-1])/(2*r_a**2))/np.sqrt(  ((x[:-2]+x[1:-1])/(2*r_a**2))**2 + ((y[:-2]+y[1:-1])/(2*r_b**2))**2  )
-			n2a = -((y[:-2]+y[1:-1])/(2*r_b**2))/np.sqrt(  ((x[:-2]+x[1:-1])/(2*r_a**2))**2 + ((y[:-2]+y[1:-1])/(2*r_b**2))**2  )
-			crosses1 = r1a*n2a - r2a*n1a
-
-			r1b = (x[1:-1] + x[2:])*0.5 ; r2b =0.5*(y[1:-1] + y[2:])
-			n1b = -((x[1:-1]+x[2:])/(2*r_a**2))/np.sqrt(  ((x[1:-1]+x[2:])/(2*r_a**2))**2 + ((y[1:-1]+y[2:])/(2*r_b**2))**2  )
-			n2b = -((y[1:-1]+y[2:])/(2*r_b**2))/np.sqrt(  ((x[1:-1]+x[2:])/(2*r_a**2))**2 + ((y[1:-1]+y[2:])/(2*r_b**2))**2  )
-			crosses2 = r1b*n2b - r2b*n1b
-
-			traps3 = np.log(rad_1) * crosses1
-			traps4 = np.log(rad_2) * crosses2
-			ds = np.sqrt((x[1:-1]-x[:-2])**2 + (y[1:-1] - y[:-2])**2)
-			integral_66 = integral_66 + (traps3 +traps4)* ds   * 0.5
+				traps3 = np.log(rad_1) * crosses1
+				traps4 = np.log(rad_2) * crosses2
+				ds = np.sqrt((x[j+1]-x[j])**2 + (y[j+1] - y[j])**2)
+				integral_66 = integral_66 + (traps3 +traps4)* ds   * 0.5
 		if direction1  == 11:
 			Matrix_B[i] = integral_x
 		else :
@@ -130,6 +134,8 @@ def added_mass(N,r_a,r_b):
 		n2y = -(y[i+1] + y[i+2])/(2*r_b**2)/rad_2
 		crosses2 = r1y*n2y - r2y*n1y
 
+
+
 		traps3 = phi6[i] * crosses1
 		traps4 = phi6[i+1] * crosses2
 
@@ -138,27 +144,37 @@ def added_mass(N,r_a,r_b):
 	return add_m11, add_m66
 
 
-
-
-
-N = 4
+N = 360
 r_a = 1
 r_b = 1
 a11, a66 = added_mass(N,r_a,r_b)
-"""a11_e = 4.754 *r_a**2
-a66_e = 0.725 *r_a**2"""
+#a11_e = 4.754 *r_a**2
+#a66_e = 0.725 *r_a**2
 a11_e = np.pi*r_b**2
-#a66_e = (1.0/8.0)* np.pi*(r_a**2-r_b**2)**2
+a66_e = (1.0/8.0)* np.pi*(r_a**2-r_b**2)**2
 print a11#,a66
-print a11_e#, a66_e
-#print a11_e, a66_e
+print "exact a11:  ",a11_e#, a66_e
+print a66
+print "exact a66:  ",a66_e
+
+
+
 """
 N = 1000
 r_a = 1
-r_b = 3
+r_b = 1
 equal = r_a - r_b
+a11_e = 4.754 *r_a**2
+a66_e = 0.725 *r_a**2
+a11, a66 = added_mass(N,r_a,r_b)
+print a11
+print a11_e
+print "----------"
+print a66
+print a66_e
+"""
 
-
+"""
 if equal == 0:
 	a_m11,a_m66 = added_mass(N,r_a,r_b)
 	error1 = ((((r_a**2*np.pi)-float(a_m11))/(r_a**2*np.pi))*100)
@@ -186,7 +202,4 @@ else :
 	plot(solver1(N,r_a,r_b,direction1 = 11), "r")
 	title("Distribution of potential over an ellipse running %.d times \n m11: %.2f , error m11 : %.2f %% \n m66 = %.2f , error m66= %.2f %%, r_a = %.d, r_b= %.d  " %(N,a_m11,error1,a_m66,error6,r_a,r_b))
 	show()
-
 """
-
-
