@@ -187,4 +187,4 @@ def run_it(direction,a,b,N,Plot,AM):
 	end = timer()
 	print "Total running time: %.3fs" % (end-start)
 
-run_it(direction=1,a=1,b=1,N=1000,Plot=False,AM=True)
+run_it(direction=6,a=1,b=1,N=1000,Plot=False,AM=True)

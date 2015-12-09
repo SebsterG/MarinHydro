@@ -4,6 +4,7 @@ import math as math
 
 import time
 start_time = time.time()
+"""
 def make_points(num_points,r_a, r_b):
 	dx = 2*pi/num_points
 	x = np.zeros(num_points*2)
@@ -12,14 +13,23 @@ def make_points(num_points,r_a, r_b):
 		x[i] = r_a*np.cos(i*dx)
 		y[i] = r_b*np.sin(i*dx)
 	return x,y
-
-
-"""x,y = make_points(4,2,2)
-plot(x,y)
-show()
-print x
-print y"""
 """
+"""
+def make_points(N,h,b):
+	x = np.zeros(2*N)
+	y = np.zeros(2*N)
+	x[0:N/4] = b/2.
+	x[N/4:N/2] = np.linspace(b/2.,-b/2.,N/4.)
+	x[N/2:3*N/4] = -b/2.
+	x[3*N/4:N] = np.linspace(-b/2.,b/2.,N/4.)
+	y[0:N/4] = np.linspace(-h/2.,h/2.,N/4.)
+	y[N/4:N/2] = h/2.
+	y[N/2:3*N/4] = np.linspace(h/2.,-h/2.,N/4.)
+	y[3*N/4:N] = -h/2.
+	x[N:2*N] = x[0:N]
+	y[N:2*N] = y[0:N]
+	return x,y
+"""	
 def make_points(N,r_a,r_b):
 	N = N/4 *4
 	Np = N/4
@@ -37,14 +47,14 @@ def make_points(N,r_a,r_b):
 		x[i+3*Np] = -r_a
 		y[i+3*Np] = -(d1 +(d2-d1)/2 *(1-np.cos(i*np.pi/Np)))
 	return x ,y
-"""
+
 """
 x,y =make_points(100,1,1)
 plt.figure()
 plt.plot(x,y, "-o")
 plt.axis([-3,3,-3,3])	
-plt.show()
-"""
+plt.show()"""
+
 def make_angle(N,r_a,r_b):
 	#angle = np.zeros(N-1)
 	x,y = make_points(N,r_a,r_b)
@@ -71,38 +81,41 @@ def integral(dirr,N,r_a,r_b,x1,x2,y1,y2):
 	# middle of this segment
 	x_m = (x1+x2)/2.0
 	y_m = (y1+y2)/2.0
-	
+
 	# middle of every segment
-	x_c = (x[0:N]+x[1:N+1])*0.5
-	y_c = (y[0:N]+y[1:N+1])*0.5
+	# not middle this time
+	x_c = (x[1:N+1]-x[:N])
+	y_c = (y[1:N+1]-y[:N])
+	ds = np.sqrt(x_c**2 + y_c**2)
+	#ds = np.sqrt((x[1:N+1]-x[:N])**2 + (y[1:N+1]-y[:N])**2)
 
 	rad_1 = np.sqrt((x_m-x[0:N])**2+(y_m-y[0:N])**2)
 	rad_2 = np.sqrt((x_m-x[1:N+1])**2+(y_m-y[1:N+1])**2)
-	ds = np.sqrt((x[1:N+1]-x[0:N])**2 + (y[1:N+1]-y[0:N])**2)
-	
+
 	if dirr == 11:
-		n = -(y_c/(r_a**2)) / np.sqrt((x_c**2/(r_a**4)) + ((y_c**2)/(r_b**4)))
-		#n[np.isnan(n)] = 0
-
+		n = y_c / ds
+		n[np.isnan(n)] = 0
 	if dirr == 22:
-		n = -(x_c/(r_b**2)) / np.sqrt((x_c**2/(r_a**4)) + ((y_c**2)/(r_b**4)) )
-		#n[np.isnan(n)] = 0
+		n = x_c / ds
+		n[np.isnan(n)] = 0
 	if dirr == 66:
-		nx = (x_c/(r_b**2)) / np.sqrt((x_c**2/(r_a**4)) + ((y_c**2)/(r_b**4)) )
-		ny = (y_c/(r_a**2)) / np.sqrt((x_c**2/(r_a**4)) + ((y_c**2)/(r_b**4)))
-		#r_x = x_c
-		#r_y = y_c
-		n = x_c*ny-r_y*nx
-
+		ny = x_c / ds
+		ny[np.isnan(ny)] = 0
+		nx = -y_c / ds
+		nx[np.isnan(nx)] = 0
+		r_x = (x[1:N+1]+x[:N])/2.0
+		r_y = (y[1:N+1]+y[:N])/2.0
+		n = ny*r_x - nx*r_y
+	"""
 	traps1 =np.log(rad_1)
 	traps2 = np.log(rad_2)
 	"""
 	non_1 = np.nonzero(rad_1)
 	non_2 = np.nonzero(rad_2)
 	traps1 = np.log(rad_1[non_1])
-	traps2 = np.log(rad_2[non_2])"""
+	traps2 = np.log(rad_2[non_2])
 
-	integ = 0.5*sum((traps1+traps2)*ds*n)
+	integ = 0.5*sum((traps1+traps2)*ds[non_1]*n[non_1])
 	return integ
 
 def integral_matrix(dirr,r_a,r_b,N):
@@ -117,38 +130,44 @@ def solver(dirr,N,r_a,r_b):
 def added_mass(dirr,r_a,r_b,N):
 	phi = solver(dirr,N,r_a,r_b)
 	x,y = make_points(N,r_a,r_b)
-	ds = np.sqrt((x[1:N+1]-x[:N])**2 + (y[1:N+1]-y[:N])**2)
 	# middle of every segment
-	x_c = (x[:N]+x[1:N+1])*0.5
-	y_c = (y[:N]+y[1:N+1])*0.5
-	a = phi[:N]
-	b = phi[0:N+1]
+	# not middle this time
+	x_c = (x[1:N+1]-x[:N])
+	y_c = (y[1:N+1]-y[:N])
+	ds = np.sqrt(x_c**2 + y_c**2)
+	#ds = np.sqrt((x[1:N+1]-x[:N])**2 + (y[1:N+1]-y[:N])**2)
 
+	
+	phi_1 = phi[:N]
+	phi_2 = phi[0:N+1]
 	if dirr == 11:
-		n = ((-y_c)/(r_b**2)) \
-		/ np.sqrt(((x_c**2)/(r_a**4)) + ((y_c**2)/(r_b**4)) )
+		n = y_c / ds
 		n[np.isnan(n)] = 0
-		exact = np.pi*r_b**2
+		#exact = 4.754*r_a**2
+		exact = 1.51*np.pi*r_a**2
 	if dirr == 22:
-		n = ((-x_c)/(r_a**2)) \
-		/ np.sqrt(((x_c**2)/(r_a**4)) + ((y_c**2)/(r_b**4)) )
+		n = x_c / ds
 		n[np.isnan(n)] = 0
-		exact = np.pi*r_a**2
+		#exact = 4.754*r_a**2
+		exact = 1.51*np.pi*r_a**2
 	if dirr == 66:
-		nx = -(x_c/(r_b**2)) / np.sqrt((x_c**2/(r_a**4)) + ((y_c**2)/(r_b**4)) )
-		ny = -(y_c/(r_a**2)) / np.sqrt((x_c**2/(r_a**4)) + ((y_c**2)/(r_b**4)))
-		r_x = x_c
-		r_y = y_c
+		ny = x_c / ds
+		ny[np.isnan(ny)] = 0
+		nx = -y_c / ds
+		nx[np.isnan(nx)] = 0
+		r_x = (x[1:N+1]+x[:N])/2.0
+		r_y = (y[1:N+1]+y[:N])/2.0
 		n = ny*r_x - nx*r_y
-		exact = np.pi*(r_a**2-r_b**2)**2/8.0
+		#exact = 0.725*r_a**4
+		exact = 0.234*np.pi*r_a**4
 
-	integ = 0.5*sum((a+b)*ds*n)
+	integ = 0.5*sum((phi_1+phi_2)*ds*n)
 	print  N," Elements"
 	print "Direction :", dirr
 	print "Calculated Added mass is: ",integ
 	print "Exact added mass:",exact
 	print 100-(100*integ/exact),"%"
-added_mass(11,1,3,1000)
+added_mass(66,1,1,1000)
 
 def exact(r_a,N):
 	dtet = 2*pi/N
