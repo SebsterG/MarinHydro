@@ -127,6 +127,9 @@ def integral_matrix(dirr,r_a,r_b,N):
 def solver(dirr,N,r_a,r_b):
 	return np.linalg.solve(make_angle(N,r_a,r_b),integral_matrix(dirr,r_a,r_b,N))
 
+#plot(solver(11,360,1,1))
+#show()
+
 def added_mass(dirr,r_a,r_b,N):
 	phi = solver(dirr,N,r_a,r_b)
 	x,y = make_points(N,r_a,r_b)
@@ -167,7 +170,9 @@ def added_mass(dirr,r_a,r_b,N):
 	print "Calculated Added mass is: ",integ
 	print "Exact added mass:",exact
 	print 100-(100*integ/exact),"%"
-added_mass(66,1,1,1000)
+	print("--- %.2f seconds ---" % (time.time() - start_time))
+
+
 
 def exact(r_a,N):
 	dtet = 2*pi/N
@@ -175,8 +180,15 @@ def exact(r_a,N):
 	for i in range(N):
 		value[i] = -r_a*np.cos(dtet*i)
 	return value
-print("--- %.2f seconds ---" % (time.time() - start_time))
 
 #print exact(1,10)
 #print exact(1,100) - solver(11,100,1,1)
 
+if __name__ == '__main__':
+	#added_mass(11,1,1,360)
+	
+	added_mass(11,1,1,360)
+	
+	#added_mass(66,1,1,360)
+
+	#added_mass(66,1,1,720)

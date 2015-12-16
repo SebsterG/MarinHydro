@@ -140,13 +140,13 @@ def added_mass(N,r_a,r_b):
 
 
 
-
+"""
 N = 4
 r_a = 1
 r_b = 1
 a11, a66 = added_mass(N,r_a,r_b)
-"""a11_e = 4.754 *r_a**2
-a66_e = 0.725 *r_a**2"""
+a11_e = 4.754 *r_a**2
+a66_e = 0.725 *r_a**2
 a11_e = np.pi*r_b**2
 #a66_e = (1.0/8.0)* np.pi*(r_a**2-r_b**2)**2
 print a11#,a66
@@ -187,6 +187,6 @@ else :
 	title("Distribution of potential over an ellipse running %.d times \n m11: %.2f , error m11 : %.2f %% \n m66 = %.2f , error m66= %.2f %%, r_a = %.d, r_b= %.d  " %(N,a_m11,error1,a_m66,error6,r_a,r_b))
 	show()
 
-"""
+
 
 

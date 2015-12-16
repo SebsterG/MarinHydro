@@ -1,0 +1,52 @@
+\documentclass[a4paper,norsk]{article}
+\usepackage{preamble}
+
+
+\begin{document}
+
+\title{Marine Hydrodynamics \\ Assignment 1}
+\author{Sebastian Gjertsen}
+
+\maketitle
+\[   \int_C \phi \frac{\partial G }{\partial n} - G\frac{\partial \phi }{\partial n} = -\pi \phi(x,y) \]
+\newline
+$$ G = ln (r)$$
+\newline
+$$ -\pi \phi(x_0) + \int_C \phi \frac{\partial }{\partial n} ln(r) dl = \int_C ln(r) \frac{\partial \phi}{\partial n} dl       $$
+\newline
+\[ -\pi \phi(x_0) + \sum_{n=1}^N \phi(x_n) (\theta_a - \theta_b)  = \int_C ln(r)\frac{\partial \phi }{\partial n} dl    \]
+\newline
+$$\frac{\partial \phi}{\partial n_i} =n_i $$
+\newline
+$$
+\begin{pmatrix}
+  -\pi & (\theta_a - \theta_b)_0  & (\theta_a - \theta_b)_1 & ...\\
+  (\theta_a - \theta_b)_N  & -\pi & (\theta_a - \theta_b)_0  & ...\\
+  (\theta_a - \theta_b)_{N-1}  & (\theta_a - \theta_b)_N  & -\pi & ...\\
+  ... & ... & ....& ...  \\
+ \end{pmatrix}
+ \begin{pmatrix}
+\phi_0  \\
+\phi_1 \\
+\phi_2 \\ 
+  ...  \\
+  \phi_N
+ \end{pmatrix}
+ =
+ \begin{pmatrix}
+\int ln(r_0) n_0 dl   \\
+\int ln(r_1) n_1 dl  \\
+\int ln(r_2) n_2 dl  \\ 
+  ...  \\
+  \end{pmatrix}
+  $$
+\newline
+$$\bar{n} = \frac{\frac{x}{a^2}\bar{i} + \frac{y}{b^2}\bar{j} } { (\frac{x}{a^2})^2 + (\frac{y}{b^2})^2 }$$
+
+\begin{flushleft}
+Circle exact potential $\phi =-\frac{a^2x}{r^2} $ or $\phi = -a cos(\theta)$ 
+\newline
+\newline
+Exact solution added mass $m_{11} = \rho r_a^2 \pi $
+\end{flushleft}
+\end{document}
