@@ -1,6 +1,9 @@
 from matplotlib.pylab import *
 import numpy as np
 import math as math
+import warnings
+warnings.filterwarnings("ignore")
+
 
 import time
 start_time = time.time()
@@ -161,15 +164,15 @@ def added_mass(dirr,r_a,r_b,N):
 		r_x = (x[1:N+1]+x[:N])/2.0
 		r_y = (y[1:N+1]+y[:N])/2.0
 		n = ny*r_x - nx*r_y
-		#exact = 0.725*r_a**4
-		exact = 0.234*np.pi*r_a**4
+		exact =0.725*r_a**4
+		#exact =0.234*np.pi*r_a**4
 
 	integ = 0.5*sum((phi_1+phi_2)*ds*n)
 	print  N," Elements"
 	print "Direction :", dirr
-	print "Calculated Added mass is: ",integ
-	print "Exact added mass:",exact
-	print 100-(100*integ/exact),"%"
+	print "Calculated Added mass: ",integ
+	print "Exact added mass:      ",exact
+	print "Error:      		",100-(100*integ/exact),"%"
 	print("--- %.2f seconds ---" % (time.time() - start_time))
 
 
@@ -187,8 +190,8 @@ def exact(r_a,N):
 if __name__ == '__main__':
 	#added_mass(11,1,1,360)
 	
-	added_mass(11,1,1,360)
-	
+	added_mass(66,2,1,360)
+	added_mass(66,2,1,720)
 	#added_mass(66,1,1,360)
 
 	#added_mass(66,1,1,720)

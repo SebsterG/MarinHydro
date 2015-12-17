@@ -1,6 +1,7 @@
 \documentclass[a4paper,norsk]{article}
 \usepackage{preamble}
 
+\graphicspath{ {Circle}{ellipse} }
 
 \begin{document}
 
@@ -8,7 +9,7 @@
 \author{Sebastian Gjertsen}
 
 \maketitle
-\[   \int_C \phi \frac{\partial G }{\partial n} - G\frac{\partial \phi }{\partial n} = -\pi \phi(x,y) \]
+\[   \int_C \big(\phi \frac{\partial G }{\partial n} - G\frac{\partial \phi }{\partial n}\big) = -\pi \phi(x,y) \]
 \newline
 $$ G = ln (r)$$
 \newline
@@ -20,8 +21,8 @@ $$\frac{\partial \phi}{\partial n_i} =n_i $$
 \newline
 $$
 \begin{pmatrix}
-  -\pi & (\theta_a - \theta_b)_0  & (\theta_a - \theta_b)_1 & ...\\
-  (\theta_a - \theta_b)_N  & -\pi & (\theta_a - \theta_b)_0  & ...\\
+  -\pi & (\theta_a - \theta_b)_1  & (\theta_a - \theta_b)_2 & ...\\
+  (\theta_a - \theta_b)_N  & -\pi & (\theta_a - \theta_b)_1  & ...\\
   (\theta_a - \theta_b)_{N-1}  & (\theta_a - \theta_b)_N  & -\pi & ...\\
   ... & ... & ....& ...  \\
  \end{pmatrix}
@@ -49,4 +50,11 @@ Circle exact potential $\phi =-\frac{a^2x}{r^2} $ or $\phi = -a cos(\theta)$
 \newline
 Exact solution added mass $m_{11} = \rho r_a^2 \pi $
 \end{flushleft}
+
+
+\newpage
+\includegraphics[width=13cm, height=10cm]{Circle}
+\newline
+\includegraphics[width=13cm, height=10cm]{ellipse}
+
 \end{document}

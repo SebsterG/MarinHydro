@@ -145,10 +145,9 @@ def added_mass(dirr,r_a,r_b,N):
 	integ = 0.5*sum((a+b)*ds*n)
 	print  N," Elements"
 	print "Direction :", dirr
-	print "Calculated Added mass is: ",integ
-	print "Exact added mass:",exact
-	print 100-(100*integ/exact),"%"
-added_mass(11,1,3,1000)
+	print "Calculated Added mass:    ",integ
+	print "Exact added mass:	  ",exact
+	print "Error:                    ",100-(100*integ/exact),"%"
 
 def exact(r_a,N):
 	dtet = 2*pi/N
@@ -156,6 +155,11 @@ def exact(r_a,N):
 	for i in range(N):
 		value[i] = -r_a*np.cos(dtet*i)
 	return value
+
+added_mass(11,1,1,360)
+print("--- %.2f seconds ---" % (time.time() - start_time))
+start_time = time.time()
+added_mass(11,1,1,720)
 print("--- %.2f seconds ---" % (time.time() - start_time))
 
 #print exact(1,10)

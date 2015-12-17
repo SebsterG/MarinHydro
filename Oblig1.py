@@ -155,9 +155,8 @@ print a11_e#, a66_e
 """
 N = 1000
 r_a = 1
-r_b = 3
+r_b = 1
 equal = r_a - r_b
-
 
 if equal == 0:
 	a_m11,a_m66 = added_mass(N,r_a,r_b)

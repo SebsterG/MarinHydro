@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.10)  16 DEC 2015 17:59
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.10)  17 DEC 2015 18:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -620,20 +620,20 @@ LaTeX Warning: Unused global option(s):
 (./Presentasjon_oblig1.aux)
 \openout1 = `Presentasjon_oblig1.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -704,7 +704,7 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 5.
+Package hyperref Info: Link coloring OFF on input line 6.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -713,74 +713,85 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count134
 )
-LaTeX Info: Redefining \ref on input line 5.
-LaTeX Info: Redefining \pageref on input line 5.
-LaTeX Info: Redefining \nameref on input line 5.
+LaTeX Info: Redefining \ref on input line 6.
+LaTeX Info: Redefining \pageref on input line 6.
+LaTeX Info: Redefining \nameref on input line 6.
 
 (./Presentasjon_oblig1.out) (./Presentasjon_oblig1.out)
 \@outlinefile=\write3
 \openout3 = `Presentasjon_oblig1.out'.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 11.
+LaTeX Font Info:    Try loading font information for U+msa on input line 12.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 11.
+LaTeX Font Info:    Try loading font information for U+msb on input line 12.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 11--13
+Underfull \hbox (badness 10000) in paragraph at lines 12--14
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 13--15
+Underfull \hbox (badness 10000) in paragraph at lines 14--16
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 15--17
+Underfull \hbox (badness 10000) in paragraph at lines 16--18
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--19
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 19--21
+Underfull \hbox (badness 10000) in paragraph at lines 20--22
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 42--44
+Underfull \hbox (badness 10000) in paragraph at lines 43--45
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 52.
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 52.
+<Circle.png, id=20, 578.16pt x 433.62pt>
+File: Circle.png Graphic file (type png)
+ <use Circle.png>
+Package pdftex.def Info: Circle.png used on input line 56.
+(pdftex.def)             Requested size: 369.87997pt x 284.54257pt.
 
-(./Presentasjon_oblig1.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 52.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 52.
+<ellipse.png, id=22, 652.5981pt x 496.4949pt>
+File: ellipse.png Graphic file (type png)
+ <use ellipse.png>
+Package pdftex.def Info: ellipse.png used on input line 58.
+(pdftex.def)             Requested size: 369.88367pt x 284.53535pt.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 60.
+ [2 <./Circle.png> <./ellipse.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 60.
+ (./Presentasjon_oblig1.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 60.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 60.
 Package rerunfilecheck Info: File `Presentasjon_oblig1.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 52.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 60.
  ) 
 Here is how much of TeX's memory you used:
- 10839 strings out of 495028
- 157973 string characters out of 6181497
- 256616 words of memory out of 5000000
- 13903 multiletter control sequences out of 15000+600000
- 12279 words of font info for 43 fonts, out of 8000000 for 9000
+ 10853 strings out of 495028
+ 158148 string characters out of 6181497
+ 256637 words of memory out of 5000000
+ 13912 multiletter control sequences out of 15000+600000
+ 12965 words of font info for 44 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 44i,7n,45p,253b,335s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,11n,45p,253b,335s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/fenics/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/
 fenics/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/fenics/.te
 xmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk></usr/share/texlive/texmf-di
@@ -791,10 +802,10 @@ ic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on Presentasjon_oblig1.pdf (1 page, 85995 bytes).
+Output written on Presentasjon_oblig1.pdf (2 pages, 156533 bytes).
 PDF statistics:
- 112 PDF objects out of 1000 (max. 8388607)
- 45 compressed objects within 1 object stream
- 2 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 122 PDF objects out of 1000 (max. 8388607)
+ 49 compressed objects within 1 object stream
+ 3 named destinations out of 1000 (max. 500000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
